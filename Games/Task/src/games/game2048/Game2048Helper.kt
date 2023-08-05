@@ -18,5 +18,10 @@ package games.game2048
  * You can find more examples in 'TestGame2048Helper'.
 */
 fun <T : Any> List<T?>.moveAndMergeEqual(merge: (T) -> T): List<T> =
-        TODO()
+        asSequence()
+                .filterNotNull()
+                .windowed(2, 2, partialWindows = true)
+                .map { list -> if (list.count { it == list[0] } > 1) listOf(merge(list[0])) else list }
+                .flatMap { it.asSequence() }
+                .toList()
 
