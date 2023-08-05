@@ -11,5 +11,7 @@ package games.gameOfFifteen
  * Thus the initial permutation should be correct.
  */
 fun isEven(permutation: List<Int>): Boolean {
-    TODO()
+    return (permutation.indices).asSequence()
+        .flatMap { i -> (i + 1 until permutation.size).asSequence().map { j -> i to j } }
+        .count{ (i, j) -> permutation[i] > permutation[j] } % 2 == 0
 }
