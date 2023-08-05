@@ -1,0 +1,9 @@
+.idea
+.gradle
+Games/Task/build
+Games/Task/out
+Games/Task/assignmentKey
+Games/Task/partId
+Games/Task/task-info.yaml
+util/
+gradle
