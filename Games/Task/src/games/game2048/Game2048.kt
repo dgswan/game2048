@@ -71,16 +71,20 @@ fun GameBoard<Int?>.moveValuesInRowOrColumn(rowOrColumn: List<Cell>): Boolean {
  */
 fun GameBoard<Int?>.moveValues(direction: Direction): Boolean {
     return when (direction) {
-        Direction.DOWN -> (1..width).map { getColumn( 1..width, it).reversed() }
+        Direction.DOWN -> (1..width)
+            .map { getColumn( width downTo 1, it) }
             .map { moveValuesInRowOrColumn(it) }
             .any { it }
-        Direction.UP -> (1..width).map { getColumn( 1..width, it) }
+        Direction.UP -> (1..width)
+            .map { getColumn( 1..width, it) }
             .map { moveValuesInRowOrColumn(it) }
             .any { it }
-        Direction.LEFT -> (1..width).map { getRow(it, 1..width) }
+        Direction.LEFT -> (1..width)
+            .map { getRow(it, 1..width) }
             .map { moveValuesInRowOrColumn(it) }
             .any { it }
-        Direction.RIGHT -> (1..width).map { getRow(it, 1..width).reversed() }
+        Direction.RIGHT -> (1..width)
+            .map { getRow(it, width downTo 1) }
             .map { moveValuesInRowOrColumn(it) }
             .any { it }
     }
